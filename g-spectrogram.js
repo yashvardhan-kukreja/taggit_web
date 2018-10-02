@@ -18,7 +18,7 @@ Polymer('g-spectrogram', {
   attachedCallback: function() {
     this.tempCanvas = document.createElement('canvas'),
     console.log('Created spectrogram');
-    // Get input from the microphone.
+    // Get input from the micropho
     if (navigator.mozGetUserMedia) {
       navigator.mozGetUserMedia({audio: true},
                                 this.onStream.bind(this),
@@ -136,10 +136,10 @@ Polymer('g-spectrogram', {
         console.log("new sec: "+ dat.getSeconds());
         console.log("Diff: " + Math.abs(dat.getSeconds()-sec1));
 
-        if(window.count>10){
+        if(window.count>30){
           if(Math.abs(dat.getSeconds()-sec1)<5){
             console.log('Detected-2');
-            $.get("https://taggit18.herokuapp.com", function(data,status) {
+            $.get("https://taggit18.herokuapp.com/goelashwin36@gmail.com", function(data,status) {
 	       		console.log("Data: " + data + " Status: " + status);
 	         	});
             
