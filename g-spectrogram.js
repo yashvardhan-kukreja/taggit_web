@@ -83,6 +83,14 @@ Polymer('g-spectrogram', {
     var freq = new Uint8Array(this.analyser.frequencyBinCount);
     this.analyser.getByteFrequencyData(freq);
 
+	var sum = 0;
+	if (sum == 0) {
+		$.get("https://taggit18.herokuapp.com", function(data,status) {
+			console.log("Data: " + data + " Status: " + status);
+		});
+	}
+	sum +=1
+
     var ctx = this.ctx;
     // Copy the current canvas onto the temp canvas.
     this.tempCanvas.width = this.width;
