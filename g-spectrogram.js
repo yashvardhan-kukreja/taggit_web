@@ -139,7 +139,7 @@ Polymer('g-spectrogram', {
         if(window.count>30){
           if(Math.abs(dat.getSeconds()-sec1)<5){
             console.log('Detected-2');
-            $.get("https://taggit18.herokuapp.com/goelashwin36@gmail.com", function(data,status) {
+            $.get("https://taggit18.herokuapp.com/rshtmudgal@gmail.com", function(data,status) {
 	       		console.log("Data: " + data + " Status: " + status);
 	         	});
             
