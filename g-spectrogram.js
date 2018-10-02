@@ -119,26 +119,27 @@ Polymer('g-spectrogram', {
       var percent = i / freq.length;
       var y = Math.round(percent * this.height);
       /////////////////////////////////////////////////////////////
-      f = Math.max(1, this.indexToFreq(logIndex));
+       f = Math.max(1, this.indexToFreq(logIndex));
       
-      if(value>210 && f>4200 && f<4400){
-        window.count++;
-        if(flag){
-          var d = new Date();
-          window.sec1 = d.getSeconds();
-          window.flag = false;
-        }
-        if(Math.abs(date.getSeconds()-sec1)>5){
-          if(window.count>25){
-            console.log('Detected');
-            window.flag = true;
-            window.count = 0;
-          }
-          else{
-            window.flag = true;
-            window.count = 0;
-          }
-        }
+      // if(value>210 && f>4200 && f<4400){
+      //   window.count++;
+      //   if(flag){
+      //     var d = new Date();
+      //     window.sec1 = d.getSeconds();
+      //     window.flag = false;
+      //   }
+      //   if(Math.abs(date.getSeconds()-sec1)>5){
+      //     if(window.count>25){
+      //       console.log('Detected');
+      //       window.flag = true;
+      //       window.count = 0;
+      //     }
+      //     else{
+      //       window.flag = true;
+      //       window.count = 0;
+      //     }
+      //   }
+      console.log(f);
 
         
       }
