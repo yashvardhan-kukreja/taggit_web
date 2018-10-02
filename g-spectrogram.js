@@ -123,24 +123,36 @@ Polymer('g-spectrogram', {
       
       if(value>210 && f>4200 && f<4400){
         window.count++;
+        console.log("count: " + window.count);
+
+        var dat = new Date();
+
         if(flag){
-          var d = new Date();
-          window.sec1 = d.getSeconds();
           window.flag = false;
+          window.sec1 = dat.getSeconds();
+          console.log("sec1: "+sec1);
         }
-        if(Math.abs(window.d.getSeconds()-sec1)>5){
-          if(window.count>25){
-            console.log('Detected');
+        console.log("sec2: "+sec1);
+        console.log("new sec: "+ dat.getSeconds());
+        console.log("Diff: " + Math.abs(dat.getSeconds()-sec1));
+
+        if(window.count>10){
+          if(Math.abs(dat.getSeconds()-sec1)<5){
+            console.log('Detected-2');
+            $.get("https://taggit18.herokuapp.com", function(data,status) {
+	       		console.log("Data: " + data + " Status: " + status);
+	         	});
+            
             window.flag = true;
             window.count = 0;
+            
           }
           else{
             window.flag = true;
             window.count = 0;
           }
         }
-      console.log(f);
-
+        console.log(window.flag);
         
       }
       //////////////////////////////////////////////////////////
