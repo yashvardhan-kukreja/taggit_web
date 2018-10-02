@@ -1,6 +1,5 @@
 // Assumes context is an AudioContext defined outside of this class.
 
-Polymer.globalsManager.set('globalVar', {count: 0, flag: true, sec1: 0});
 
 Polymer('g-spectrogram', {
   // Show the controls UI.
@@ -121,25 +120,23 @@ Polymer('g-spectrogram', {
       var y = Math.round(percent * this.height);
       /////////////////////////////////////////////////////////////
       f = Math.max(1, this.indexToFreq(logIndex));
-
-
+      
       if(value>210 && f>4200 && f<4400){
-        Polymer.globalsManager.set('globalVar').count++;
+        window.count++;
         if(flag){
           var d = new Date();
-          Polymer.globalsManager.get('globalVar').sec1 = d.getSeconds();
-          //flag = false;
-          Polymer.globalsManager.set('globalVar').flag = false;
+          window.sec1 = d.getSeconds();
+          window.flag = false;
         }
         if(Math.abs(date.getSeconds()-sec1)>5){
-          if(count>25){
+          if(window.count>25){
             console.log('Detected');
-            Polymer.globalsManager.set('globalVar').flag = true;
-            Polymer.globalsManager.set('globalVar').count = 0;
+            window.flag = true;
+            window.count = 0;
           }
           else{
-            Polymer.globalsManager.set('globalVar').flag = true;
-            Polymer.globalsManager.set('globalVar').count = 0;
+            window.flag = true;
+            window.count = 0;
           }
         }
 
