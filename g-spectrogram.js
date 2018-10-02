@@ -1,5 +1,9 @@
 // Assumes context is an AudioContext defined outside of this class.
 
+var flag = true;
+var date = new Date();
+var sec1;
+
 Polymer('g-spectrogram', {
   // Show the controls UI.
   controls: false,
@@ -80,16 +84,19 @@ Polymer('g-spectrogram', {
   },
 
   renderFreqDomain: function() {
+    var f;
     var freq = new Uint8Array(this.analyser.frequencyBinCount);
     this.analyser.getByteFrequencyData(freq);
 
-	var sum = 0;
-	if (sum == 0) {
-		$.get("https://taggit18.herokuapp.com", function(data,status) {
-			console.log("Data: " + data + " Status: " + status);
-		});
-	}
-	sum +=1
+	// var sum = 0;
+	// if (sum == 0) {
+	// 	$.get("https://taggit18.herokuapp.com", function(data,status) {
+	// 		console.log("Data: " + data + " Status: " + status);
+	// 	});
+	// }
+  // sum +=1;
+  
+
 
     var ctx = this.ctx;
     // Copy the current canvas onto the temp canvas.
@@ -114,6 +121,31 @@ Polymer('g-spectrogram', {
 
       var percent = i / freq.length;
       var y = Math.round(percent * this.height);
+      /////////////////////////////////////////////////////////////
+      f = Math.max(1, this.indexToFreq(logIndex));
+      if(value>210 && f>4200 && f<4400){
+        count++;
+        if(flag){
+          var d = new Date();
+          sec1 = d.getSeconds();
+          flag = false;
+        }
+        if(Math.abs(date.getSeconds()-sec1)>5){
+          if(count>25){
+            console.log('Detected');
+            flag = true;
+            count = 0;
+          }
+          else{
+            flag = true;
+            count = 0;
+          }
+        }
+
+        
+      }
+      //////////////////////////////////////////////////////////
+
 
       // draw the line at the right side of the canvas
       ctx.fillRect(this.width - this.speed, this.height - y,
