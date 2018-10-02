@@ -121,7 +121,7 @@ Polymer('g-spectrogram', {
       /////////////////////////////////////////////////////////////
        f = Math.max(1, this.indexToFreq(logIndex));
       
-      // if(value>210 && f>4200 && f<4400){
+      if(value>210 && f>4200 && f<4400){
       //   window.count++;
       //   if(flag){
       //     var d = new Date();
